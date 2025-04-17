@@ -8,7 +8,7 @@ resource "docker_network" "primary_network" {
   name = "learn-network"
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 }
 
@@ -18,7 +18,7 @@ resource "docker_network" "primary_network" {
 
 resource "docker_container" "bastion_host" {
   name     = "bastion"
-  image    = "learn-consul-vms-test/base-consul:learn-consul-vms-test"
+  image    = "consul-sandbox/base-consul:consul-sandbox"
   hostname = "bastion"
 
   networks_advanced {
@@ -32,7 +32,7 @@ resource "docker_container" "bastion_host" {
 
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   volumes {
@@ -86,7 +86,7 @@ resource "docker_container" "bastion_host" {
 resource "docker_container" "consul_server" {
   name     = "consul-server-${count.index}"
   count    = var.server_number
-  image    = "learn-consul-vms-test/base-consul:learn-consul-vms-test"
+  image    = "consul-sandbox/base-consul:consul-sandbox"
   hostname = "consul-server-${count.index}"
   
   networks_advanced {
@@ -94,7 +94,7 @@ resource "docker_container" "consul_server" {
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   ports {
@@ -120,7 +120,7 @@ resource "docker_container" "consul_server" {
 resource "docker_container" "gateway_api" {
   name     = "gateway-api-${count.index}"
   count    = var.api_gw_number
-  image    = "learn-consul-vms-test/base-consul:learn-consul-vms-test"
+  image    = "consul-sandbox/base-consul:consul-sandbox"
   hostname = "gateway-api-${count.index}"
   
   networks_advanced {
@@ -128,7 +128,7 @@ resource "docker_container" "gateway_api" {
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   ports {
@@ -150,7 +150,7 @@ resource "docker_container" "gateway_api" {
 resource "docker_container" "gateway_terminating" {
   name     = "gateway-terminating-${count.index}"
   count    = var.term_gw_number
-  image    = "learn-consul-vms-test/base-consul:learn-consul-vms-test"
+  image    = "consul-sandbox/base-consul:consul-sandbox"
   hostname = "gateway-terminating-${count.index}"
   
   networks_advanced {
@@ -158,7 +158,7 @@ resource "docker_container" "gateway_terminating" {
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   provisioner "local-exec" {
@@ -174,7 +174,7 @@ resource "docker_container" "gateway_terminating" {
 resource "docker_container" "gateway_mesh" {
   name     = "gateway-mesh-${count.index}"
   count    = var.mesh_gw_number
-  image    = "learn-consul-vms-test/base-consul:learn-consul-vms-test"
+  image    = "consul-sandbox/base-consul:consul-sandbox"
   hostname = "gateway-mesh-${count.index}"
   
   networks_advanced {
@@ -182,7 +182,7 @@ resource "docker_container" "gateway_mesh" {
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   provisioner "local-exec" {
@@ -203,7 +203,7 @@ resource "docker_container" "gateway_mesh" {
 resource "docker_container" "consul-esm" {
   name     = "consul-esm-${count.index}"
   count    = var.consul_esm_number
-  image    = "learn-consul-vms-test/base-consul:learn-consul-vms-test"
+  image    = "consul-sandbox/base-consul:consul-sandbox"
   hostname = "consul-esm-${count.index}"
   
   networks_advanced {
@@ -211,7 +211,7 @@ resource "docker_container" "consul-esm" {
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   provisioner "local-exec" {
@@ -233,14 +233,14 @@ resource "docker_container" "consul-esm" {
 resource "docker_container" "hashicups_nginx" {
   name     = "hashicups-nginx-${count.index}"
   count    = var.hc_lb_number
-  image    = "learn-consul-vms-test/hashicups-nginx:learn-consul-vms-test"
+  image    = "consul-sandbox/hashicups-nginx:consul-sandbox"
   hostname = "hashicups-nginx-${count.index}"
   networks_advanced {
     name = docker_network.primary_network.id
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   ports {
@@ -261,14 +261,14 @@ resource "docker_container" "hashicups_nginx" {
 resource "docker_container" "hashicups_frontend" {
   name     = "hashicups-frontend-${count.index}"
   count    = var.hc_fe_number
-  image    = "learn-consul-vms-test/hashicups-frontend:learn-consul-vms-test"
+  image    = "consul-sandbox/hashicups-frontend:consul-sandbox"
   hostname = "hashicups-frontend-${count.index}"
   networks_advanced {
     name = docker_network.primary_network.id
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   provisioner "local-exec" {
@@ -285,14 +285,14 @@ resource "docker_container" "hashicups_frontend" {
 resource "docker_container" "hashicups_api" {
   name     = "hashicups-api-${count.index}"
   count    = var.hc_api_number
-  image    = "learn-consul-vms-test/hashicups-api:learn-consul-vms-test"
+  image    = "consul-sandbox/hashicups-api:consul-sandbox"
   hostname = "hashicups-api-${count.index}"
   networks_advanced {
     name = docker_network.primary_network.id
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   provisioner "local-exec" {
@@ -309,14 +309,14 @@ resource "docker_container" "hashicups_api" {
 resource "docker_container" "hashicups_db" {
   name     = "hashicups-db-${count.index}"
   count    = var.hc_db_number
-  image    = "learn-consul-vms-test/hashicups-database:learn-consul-vms-test"
+  image    = "consul-sandbox/hashicups-database:consul-sandbox"
   hostname = "hashicups-db-${count.index}"
   networks_advanced {
     name = docker_network.primary_network.id
   }
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   provisioner "local-exec" {
@@ -346,7 +346,7 @@ resource "docker_container" "grafana" {
 
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   ## External port should be 3000, we use 3001 to not conflic with Tutorials preview.
@@ -390,7 +390,7 @@ resource "docker_container" "loki" {
 
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   command = ["-config.file=/etc/loki/local-config.yaml"]
@@ -408,7 +408,7 @@ resource "docker_container" "mimir" {
 
   labels {
     label = "tag"
-    value = "learn-consul-vms-test"
+    value = "consul-sandbox"
   }
 
   volumes {
