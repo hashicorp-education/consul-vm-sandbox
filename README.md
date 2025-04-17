@@ -1,7 +1,9 @@
 # Consul Sandbox
 
 WARNING
+
 -------------------------------------------------------------------------
+
 This environment is not production-ready, as it does not follow our
 recommendations for production-ready cluster deployments. Refer to the
 [Consul Deployment Guide](https://developer.hashicorp.com/consul/tutorials/production-vms/deployment-guide)
@@ -9,6 +11,7 @@ for more information.
 
 It is meant to serve as a development and testing environment. It is
 "production-lite" as it enables gossip encryption, TLS, and ACLs.
+
 -------------------------------------------------------------------------
 
 This is a 3-node Consul communiy edition datacenter running in a Docker environment.
