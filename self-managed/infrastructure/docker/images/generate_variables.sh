@@ -93,7 +93,7 @@ function get_latest_app_version() {
 
 ## DOCKER Variables
 ## Sets up a mock Docker repo, images will be built locally
-DOCKER_REPOSITORY="learn-consul-vms-test"
+DOCKER_REPOSITORY="consul-sandbox"
 DOCKER_BASE_IMAGE="base-image"
 DOCKER_BASE_CONSUL="base-consul"
 
