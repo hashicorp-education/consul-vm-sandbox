@@ -7,7 +7,7 @@ The Consul nodes do not have systemd installed so Consul needs to be stopped and
 The command to start Consul on each node is:
 
 ```
-consul agent -config-dir=/etc/consul.d > /tmp/logs/consul-server.log 2>&1 &" 
+consul agent -config-dir=/etc/consul.d > /tmp/logs/consul-server.log 2>&1 & 
 ```
 
 The command starts Consul in the background to not lock the terminal.
