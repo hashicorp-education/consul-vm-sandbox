@@ -14,7 +14,7 @@ It is meant to serve as a development and testing environment. It is
 
 -------------------------------------------------------------------------
 
-This is a 3-node Consul communiy edition datacenter running in a Docker environment.
+This is a 3-node Consul community edition datacenter running in a Docker environment.
 
 Alongside the server nodes 4 client nodes are also added to the datacenter. The
 nodes are running HashiCups, a demo web application.
@@ -25,7 +25,7 @@ datacenter and a bastion host is required to access the nodes.
 
 ## Architecture
 
-Refer to the ARCHITECTURE.md file to find a diagram of the deployed scenario.
+Refer to the `ARCHITECTURE.md` file to find a diagram of the deployed scenario.
 
 ## Configuration and logs
 
