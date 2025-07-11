@@ -35,7 +35,7 @@ You can find container data, configuration, and logs in the `var` directory.
 You can get an overview of the content using the `tree` command.
 
 ```
-tree /root/repository/var
+tree /root/consul-sandbox/var
 ```
 
 You can browse the files from the Files tab as well.
