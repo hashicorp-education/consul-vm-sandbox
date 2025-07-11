@@ -4,7 +4,7 @@
 # ----------------- #
 
 ## Using Debian as base system
-FROM debian:latest
+FROM docker.mirror.hashicorp.services/library/debian:latest
 
 # ----------------- #
 # | SW PACKAGES   | #
