@@ -518,7 +518,7 @@ remote_exec -o hashicups-api-1 "${_command}"
 md_log '
 Start `hashicups-api` service.'
 
-_RUN_CMD -r hashicups-api-1 "/home/admin/start_service.sh local"
+_RUN_CMD -r hashicups-api-1 "~/start_service.sh local"
 
 _STAT="$?"
 

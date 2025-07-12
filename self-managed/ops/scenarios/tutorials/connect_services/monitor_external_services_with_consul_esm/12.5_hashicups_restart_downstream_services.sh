@@ -88,7 +88,7 @@ for node in "${NODES_ARRAY[@]}"; do
 
       export NODE_NAME="${node}-$((i-1))"
 
-      _OUTPUT=`remote_exec ${NODE_NAME} "bash /home/admin/start_service.sh reload 2>&1"`
+      _OUTPUT=`remote_exec ${NODE_NAME} "bash ~/start_service.sh reload 2>&1"`
       _STAT="$?"
 
       if [ "${_STAT}" -ne 0 ];  then

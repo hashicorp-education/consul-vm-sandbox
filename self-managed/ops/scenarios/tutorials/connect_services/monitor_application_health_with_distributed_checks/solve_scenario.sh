@@ -335,7 +335,7 @@ fi
 md_log '
 Start `hashicups-api` service.'
 
-_RUN_CMD -r hashicups-api-1 "/home/admin/start_service.sh start --consul-node"
+_RUN_CMD -r hashicups-api-1 "~/start_service.sh start --consul-node"
 
 _STAT="$?"
 

@@ -49,7 +49,7 @@ for node in "${NODES_ARRAY[@]}"; do
 
       log_debug "Installing new version."
       remote_copy ${NODE_NAME}        ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh ~/hc_service.sh
-      remote_copy ${NODE_NAME}        ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh /home/admin/start_service.sh
+      remote_copy ${NODE_NAME}        ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh ~/start_service.sh
 
     elif [ "${SCENARIO_CLOUD_PROVIDER}" == "azure" ]; then
       ## [ ] [test] check if still works in Azure
@@ -69,7 +69,7 @@ for node in "${NODES_ARRAY[@]}"; do
 
       log_debug "Installing new version."
       remote_copy ${NODE_NAME}        ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh ~/hc_service.sh
-      remote_copy ${NODE_NAME}        ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh /home/admin/start_service.sh
+      remote_copy ${NODE_NAME}        ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh ~/start_service.sh
 
 
     else 
@@ -78,9 +78,9 @@ for node in "${NODES_ARRAY[@]}"; do
     fi
 
     remote_exec ${NODE_NAME} "chmod +x ~/hc_service.sh" > /dev/null 2>&1
-    remote_exec ${NODE_NAME} "chmod +x /home/admin/start_service.sh" > /dev/null 2>&1
+    remote_exec ${NODE_NAME} "chmod +x ~/start_service.sh" > /dev/null 2>&1
 
-    remote_exec ${NODE_NAME} "bash /home/admin/start_service.sh start" > /dev/null 2>&1
+    remote_exec ${NODE_NAME} "bash ~/start_service.sh start" > /dev/null 2>&1
     
   done
 done
