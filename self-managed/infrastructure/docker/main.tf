@@ -77,6 +77,18 @@ resource "docker_container" "bastion_host" {
       "cd /home/${var.vm_username}/ops && bash ./provision.sh operate ${var.scenario}"
     ]
   }
+
+  depends_on = [
+    docker_container.consul_server,
+    docker_container.gateway_api,
+    docker_container.gateway_terminating,
+    docker_container.gateway_mesh,
+    docker_container.consul_esm,
+    docker_container.hashicups_nginx,
+    docker_container.hashicups_frontend,
+    docker_container.hashicups_api,
+    docker_container.hashicups_db
+  ]
 }
 
 # ----------------- #
