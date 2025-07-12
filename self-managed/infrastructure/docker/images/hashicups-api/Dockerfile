@@ -8,9 +8,9 @@ ARG BASE_IMAGE
 # | DOCKER IMAGES | #
 # ----------------- #
 
-FROM hashicorpdemoapp/public-api:${APP1_VERSION} as application1
-FROM hashicorpdemoapp/product-api:${APP2_VERSION} as application2
-FROM hashicorpdemoapp/payments:${APP3_VERSION} as application3
+FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/public-api:${APP1_VERSION} as application1
+FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/product-api:${APP2_VERSION} as application2
+FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/hashicorpdemoapp/payments:${APP3_VERSION} as application3
 
 FROM ${BASE_IMAGE} 
 

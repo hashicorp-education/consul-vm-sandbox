@@ -6,7 +6,7 @@ ARG BASE_IMAGE
 # | DOCKER IMAGES | #
 # ----------------- #
 
-FROM postgres:latest as pgres
+FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/product-api-db:${APP_VERSION} as pgres
 # FROM hashicorpdemoapp/product-api-db:${APP_VERSION} as base
 FROM ${BASE_IMAGE} 
 
