@@ -143,7 +143,7 @@ export BIND_ADDRESS=${_BIND_ADDR}:8081
 
 
 if [ "${SERVICE_MESH}" == true ]; then
-    echo "Service started on local insteface"
+    echo "Service started on local interface"
     
     ## Configure Product API
     tee /home/admin/conf.json << EOF

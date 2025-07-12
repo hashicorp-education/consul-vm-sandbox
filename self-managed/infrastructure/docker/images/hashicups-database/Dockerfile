@@ -33,7 +33,7 @@ ENV PGDATA /var/lib/postgresql/data
 # ENV POSTGRES_HOST_AUTH_METHOD trust
 ENV POSTGRES_DB products
 ENV POSTGRES_USER postgres
-ENV POSTGRES_PASSWORD password
+ENV POSTGRES_PASSWORD hashicups_pwd
 # # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
 RUN mkdir -p "$PGDATA" && \
     chown -R 1000:1000 "$PGDATA" && \
