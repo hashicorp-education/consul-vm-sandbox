@@ -147,7 +147,6 @@ LS_TAG="-t ${DOCKER_REPOSITORY}/${IMAGE_NAME}:${DOCKER_REPOSITORY}"
 
 ## Build Docker image
 DOCKER_BUILDKIT=1 docker build \
-  --build-arg APP_VERSION="${HC_DB_VERSION}" \
   --build-arg BASE_IMAGE="${DOCKER_REPOSITORY}/${DOCKER_BASE_CONSUL}:latest" \
   -t "${IMAGE_TAG}" ${LATEST_TAG} ${LS_TAG} . > /dev/null 2>&1 &
 

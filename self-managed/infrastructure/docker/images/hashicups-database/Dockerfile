@@ -1,13 +1,13 @@
 # ARG BASE_VERSION
-ARG APP_VERSION
+# ARG APP_VERSION
 ARG BASE_IMAGE
 
 # ----------------- #
 # | DOCKER IMAGES | #
 # ----------------- #
 
-# FROM docker.mirror.hashicorp.services/library/postgres:latest as pgres
-FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/product-api-db:${APP_VERSION} as base
+FROM docker.mirror.hashicorp.services/library/postgres:latest as pgres
+# FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/product-api-db:${APP_VERSION} as base
 FROM ${BASE_IMAGE} 
 
 # ----------------- #
@@ -17,7 +17,7 @@ FROM ${BASE_IMAGE}
 RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive \
-	apt-get --assume-yes install postgresql postgresql-client postgresql-contrib && \
+	apt-get --assume-yes install postgresql postgresql-client postgresql-contrib gosu && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /docker-entrypoint-initdb.d
@@ -60,5 +60,7 @@ EXPOSE 5432
 
 # The appliucation will be started manually ar runtime
 # CMD ["docker-entrypoint.sh", "postgres"]
+
+CMD ["/home/admin/start_service.sh"]
 
 # CMD ["postgres", "--version"]

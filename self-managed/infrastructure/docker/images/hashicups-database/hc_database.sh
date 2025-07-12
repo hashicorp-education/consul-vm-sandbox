@@ -78,7 +78,7 @@ case "$1" in
             SERVICE_MESH=true
             ;;
         "--consul")
-            echo "START CONSUL - Starts the service using Consul service name for upstream services (using LB functionality)."
+            echo "START CONSUL - Starts the service using Consul service name for upstream services using LB functionality."
             echo "NOT APPLICABLE FOR THIS SERVICE - No Upstreams to define."
             ;;
         "--consul-node")
@@ -120,7 +120,8 @@ esac
 echo "Start service instance."
 
 ## Start PostgreSQL instance (by default on localhost)
-/usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
+# /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
+/usr/local/bin/docker-entrypoint.sh postgres
 
 ## Wait for process to startup
 sleep 1
