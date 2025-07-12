@@ -6,7 +6,7 @@ ARG BASE_IMAGE
 # | DOCKER IMAGES | #
 # ----------------- #
 
-FROM docker.mirror.hashicorp.services/library/postgres:latest as pgres
+FROM docker.mirror.hashicorp.services/library/postgres:16.4 as pgres
 # FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/product-api-db:${APP_VERSION} as base
 FROM ${BASE_IMAGE} 
 
@@ -22,7 +22,11 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 RUN mkdir /docker-entrypoint-initdb.d
 
-COPY --from=pgres /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+COPY --from=pgres /usr/local/bin/ /usr/local/bin/
+COPY --from=pgres /usr/lib/postgresql/16/bin/ /usr/local/bin/
+COPY --from=pgres /usr/lib/postgresql/ /usr/lib/postgresql/
+COPY --from=pgres /usr/share/postgresql/ /usr/share/postgresql/
+COPY --from=pgres /usr/share/doc/postgresql-common/ /usr/share/doc/postgresql-common/
 
 COPY products.sql /docker-entrypoint-initdb.d/
 COPY pg_hba.conf /home/admin

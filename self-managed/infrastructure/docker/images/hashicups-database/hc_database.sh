@@ -119,21 +119,9 @@ esac
 ## -----------------------------------------------------------------------------
 echo "Start service instance."
 
-# if [ "${SERVICE_MESH}" == true ]; then
-#     echo "DB started on local interface"
-# else
-echo "Config to listen on all available interfaces."
-
-## Copy correct configuration to data folder
-cp /home/admin/pg_hba.conf ${PGDATA}/pg_hba.conf
-
-printf "\n listen_addresses = '*' \n" >> ${PGDATA}/postgresql.conf
-# fi
-
-
 ## Start PostgreSQL instance (by default on localhost)
-# /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
-/usr/local/bin/docker-entrypoint.sh postgres
+/usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
+# /usr/local/bin/docker-entrypoint.sh postgres
 
 ## Wait for process to startup
 sleep 1
@@ -147,5 +135,25 @@ else
     echo "Something went wrong - exiting"
     exit 1
 fi
+
+# if [ "${SERVICE_MESH}" == true ]; then
+#     echo "DB started on local interface"
+# else
+    echo "Reloading config to listen on all available interfaces."
+
+    ## Stop PostgreSQL process
+    killall postgres >> ${LOGFILE} 2>&1 &
+    rm ${PGDATA}/postmaster.pid >> ${LOGFILE} 2>&1 &
+
+    sleep 2
+
+    ## Copy correct configuration to data folder
+    cp /home/admin/pg_hba.conf ${PGDATA}/pg_hba.conf
+
+    printf "\n listen_addresses = '*' \n" >> ${PGDATA}/postgresql.conf
+
+    ## Start PostgreSQL process
+    /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
+# fi
 
 ## -----------------------------------------------------------------------------
