@@ -6,8 +6,8 @@ ARG BASE_IMAGE
 # | DOCKER IMAGES | #
 # ----------------- #
 
-FROM docker.mirror.hashicorp.services/library/postgres:latest as pgres
-# FROM hashicorpdemoapp/product-api-db:${APP_VERSION} as base
+# FROM docker.mirror.hashicorp.services/library/postgres:latest as pgres
+FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/product-api-db:${APP_VERSION} as base
 FROM ${BASE_IMAGE} 
 
 # ----------------- #
@@ -60,7 +60,5 @@ EXPOSE 5432
 
 # The appliucation will be started manually ar runtime
 # CMD ["docker-entrypoint.sh", "postgres"]
-
-CMD ["/home/admin/start_service.sh"]
 
 # CMD ["postgres", "--version"]

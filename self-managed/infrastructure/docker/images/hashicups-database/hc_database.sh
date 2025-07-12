@@ -119,7 +119,7 @@ esac
 ## -----------------------------------------------------------------------------
 echo "Start service instance."
 
-## Start PostgreSQL instance (by default on loacalhost)
+## Start PostgreSQL instance (by default on localhost)
 /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
 
 ## Wait for process to startup
@@ -136,7 +136,7 @@ else
 fi
 
 if [ "${SERVICE_MESH}" == true ]; then
-    echo "DB started on local insteface"
+    echo "DB started on local interface"
 else
     echo "Reloading config to listen on all available interfaces."
 
