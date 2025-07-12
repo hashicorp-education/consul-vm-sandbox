@@ -56,3 +56,5 @@ EXPOSE 8080
 # The appliucation will be started manually ar runtime
 # Start Payments
 # CMD ["/home/app/start_api.sh"]
+
+CMD ["/home/admin/start_service.sh"]

@@ -60,3 +60,5 @@ ENV PORT 3000
 
 # The application will be started manually ar runtime
 # CMD ["/app/start_frontend.sh"]
+
+CMD ["/home/admin/start_service.sh"]

@@ -61,6 +61,6 @@ EXPOSE 5432
 # The appliucation will be started manually ar runtime
 # CMD ["docker-entrypoint.sh", "postgres"]
 
-
+CMD ["/home/admin/start_service.sh"]
 
 # CMD ["postgres", "--version"]
