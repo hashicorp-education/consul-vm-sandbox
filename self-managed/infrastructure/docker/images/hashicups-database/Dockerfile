@@ -1,5 +1,5 @@
 # ARG BASE_VERSION
-# ARG APP_VERSION
+ARG APP_VERSION
 ARG BASE_IMAGE
 
 # ----------------- #
