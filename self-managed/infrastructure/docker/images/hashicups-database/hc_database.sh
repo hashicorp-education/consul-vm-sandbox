@@ -121,7 +121,6 @@ echo "Start service instance."
 
 ## Start PostgreSQL instance (by default on localhost)
 /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
-# /usr/local/bin/docker-entrypoint.sh postgres
 
 ## Wait for process to startup
 sleep 1
@@ -153,7 +152,7 @@ fi
     printf "\n listen_addresses = '*' \n" >> ${PGDATA}/postgresql.conf
 
     ## Start PostgreSQL process
-    /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
+    exec gosu postgres postgres -D "${PGDATA}" >> ${LOGFILE} 2>&1 &
 # fi
 
 ## -----------------------------------------------------------------------------

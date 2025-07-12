@@ -24,6 +24,7 @@ RUN mkdir /docker-entrypoint-initdb.d
 
 COPY --from=pgres /usr/local/bin/ /usr/local/bin/
 COPY --from=pgres /usr/lib/postgresql/16/bin/ /usr/local/bin/
+COPY --from=pgres /usr/lib/postgresql/16/lib/ /usr/local/lib/
 COPY --from=pgres /usr/lib/postgresql/ /usr/lib/postgresql/
 COPY --from=pgres /usr/share/postgresql/ /usr/share/postgresql/
 COPY --from=pgres /usr/share/doc/postgresql-common/ /usr/share/doc/postgresql-common/
