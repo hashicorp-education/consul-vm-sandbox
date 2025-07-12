@@ -114,11 +114,11 @@ if [ -z "${LAST_COMPATIBLE_ENVOY_VERSION}" ]; then
     exit 1
 fi
 
-## [core] [flow] tune here to chenge HashiCups Configuration
+## [core] [flow] tune here to change HashiCups Configuration
 ## HashiCups
-HC_DB_VERSION="v0.0.22"
+HC_DB_VERSION="v0.0.23"
 HC_API_PAYMENTS_VERSION="latest"
-HC_API_PRODUCT_VERSION="v0.0.22"
+HC_API_PRODUCT_VERSION="v0.0.23"
 HC_API_PUBLIC_VERSION="amd64-v0.0.7"
 HC_FE_VERSION="v1.0.9"
 
