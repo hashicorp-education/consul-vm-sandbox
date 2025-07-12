@@ -331,11 +331,6 @@ resource "docker_container" "hashicups_db" {
     value = "consul-sandbox"
   }
 
-  ports {
-    internal = "5432"
-    external = "5432"
-  }
-
   provisioner "local-exec" {
     command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
