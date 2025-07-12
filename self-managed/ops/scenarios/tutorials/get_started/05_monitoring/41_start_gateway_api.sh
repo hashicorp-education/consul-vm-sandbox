@@ -357,7 +357,7 @@ for node in "${NODES_ARRAY[@]}"; do
     
     log "Restart service on ${NODE_NAME}" 
 
-    remote_exec ${NODE_NAME} "~/start_service.sh start --local"
+    remote_exec ${NODE_NAME} "/home/admin/start_service.sh start --local"
 
   done
 done

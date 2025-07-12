@@ -469,7 +469,7 @@ The configuration file is now managed directly by consul-template and in case of
 Test configuraton dynamic change by removing one of the two instances of `hashicups-frontend`.
 '
 
-_RUN_CMD -r hashicups-frontend-0 -o log "~/start_service.sh stop"
+_RUN_CMD -r hashicups-frontend-0 -o log "/home/admin/start_service.sh stop"
 
 _STAT="$?"
 
@@ -489,7 +489,7 @@ if [ "${_STAT}" -ne 0 ];  then
   exit 254
 fi
 
-_RUN_CMD -r hashicups-frontend-0 -o log "~/start_service.sh start --consul-node"
+_RUN_CMD -r hashicups-frontend-0 -o log "/home/admin/start_service.sh start --consul-node"
 
 _STAT="$?"
 

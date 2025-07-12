@@ -47,12 +47,12 @@ for node in "${NODES_ARRAY[@]}"; do
 
       SCRIPT_SVC_NAME=`echo ${NODE_NAME} | awk '{split($0,a,"-"); print a[1]"_"a[2]}'`
 
-      remote_exec ${NODE_NAME} "rm -f ~/start_service.sh" > /dev/null 2>&1
+      remote_exec ${NODE_NAME} "rm -f /home/admin/start_service.sh" > /dev/null 2>&1
       log_debug "Deployment state cleaned"
 
       log_debug "Installing new version."
-      remote_copy ${NODE_NAME} ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh ~/start_service.sh
-      remote_exec ${NODE_NAME} "chmod +x ~/start_service.sh > /dev/null 2>&1"
+      remote_copy ${NODE_NAME} ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh /home/admin/start_service.sh
+      remote_exec ${NODE_NAME} "chmod +x /home/admin/start_service.sh > /dev/null 2>&1"
     
     elif [ "${SCENARIO_CLOUD_PROVIDER}" == "azure" ]; then
 
@@ -66,12 +66,12 @@ for node in "${NODES_ARRAY[@]}"; do
 
       SCRIPT_SVC_NAME=`echo ${NODE_NAME} | awk '{split($0,a,"-"); print a[1]"_"a[2]}'`
 
-      remote_exec ${NODE_NAME} "rm -f ~/start_service.sh" > /dev/null 2>&1
+      remote_exec ${NODE_NAME} "rm -f /home/admin/start_service.sh" > /dev/null 2>&1
       log_debug "Deployment state cleaned"
 
       log_debug "Installing new version."
-      remote_copy ${NODE_NAME} ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh ~/start_service.sh
-      remote_exec ${NODE_NAME} "chmod +x ~/start_service.sh > /dev/null 2>&1"
+      remote_copy ${NODE_NAME} ${SCENARIO_OUTPUT_FOLDER}start_${SCRIPT_SVC_NAME}.sh /home/admin/start_service.sh
+      remote_exec ${NODE_NAME} "chmod +x /home/admin/start_service.sh > /dev/null 2>&1"
     else 
         log_err "Cloud provider $SCENARIO_CLOUD_PROVIDER is unsupported...exiting."
         exit 245

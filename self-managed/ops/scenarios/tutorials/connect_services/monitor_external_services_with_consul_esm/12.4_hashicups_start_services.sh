@@ -34,14 +34,14 @@ for node in "${NODES_ARRAY[@]}"; do
 
       if [[ "${_EXTERNAL_SERVICES[@]}" =~ "${node}" ]]; then
 
-        _OUTPUT=`remote_exec ${NODE_NAME} "bash ~/start_service.sh 2>&1"`
+        _OUTPUT=`remote_exec ${NODE_NAME} "bash /home/admin/start_service.sh 2>&1"`
         _STAT="$?"
 
       elif [ "${ENABLE_SERVICE_MESH}" == "true" ]; then
-        _OUTPUT=`remote_exec ${NODE_NAME} "bash ~/start_service.sh local 2>&1"`
+        _OUTPUT=`remote_exec ${NODE_NAME} "bash /home/admin/start_service.sh local 2>&1"`
         _STAT="$?"
       else
-        _OUTPUT=`remote_exec ${NODE_NAME} "bash ~/start_service.sh start --consul 2>&1"`
+        _OUTPUT=`remote_exec ${NODE_NAME} "bash /home/admin/start_service.sh start --consul 2>&1"`
         _STAT="$?"
       fi
 

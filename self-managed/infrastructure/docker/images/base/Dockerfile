@@ -105,8 +105,6 @@ COPY ./ssh_config /root/.ssh/config
 RUN chown -R 1000:1000 /home/admin/.ssh
 RUN chown -R 1000:1000 /home/admin/certs
 
-WORKDIR /home/admin
-
 # ----------------- #
 # | ENTRYPOINT    | #
 # ----------------- #
