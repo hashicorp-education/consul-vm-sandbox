@@ -31,7 +31,7 @@ echo '# ------------------------------------ #'
 
 SERVICE_MESH=false
 
-LOGFILE="/tmp/database.log"
+LOGFILE="/tmp/logs/database.log"
 
 export PGDATA="/var/lib/postgresql/data"
 export POSTGRES_DB="products"
@@ -152,7 +152,8 @@ fi
     printf "\n listen_addresses = '*' \n" >> ${PGDATA}/postgresql.conf
 
     ## Start PostgreSQL process
-    exec gosu postgres postgres -D "${PGDATA}" >> ${LOGFILE} 2>&1 &
+    # exec gosu postgres postgres -D "${PGDATA}" >> ${LOGFILE} 2>&1 &
+    /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
 # fi
 
 ## -----------------------------------------------------------------------------
