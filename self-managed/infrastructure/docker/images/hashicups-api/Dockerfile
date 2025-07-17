@@ -57,4 +57,4 @@ EXPOSE 8080
 # Start Payments
 # CMD ["/home/app/start_api.sh"]
 
-CMD ["/home/admin/start_service.sh"]
+# CMD ["/home/admin/start_service.sh"]

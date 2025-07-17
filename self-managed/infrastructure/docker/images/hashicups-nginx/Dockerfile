@@ -53,4 +53,4 @@ EXPOSE 80
 # The appliucation will be started manually ar runtime
 # CMD ["nginx", "-g", "daemon off;"]
 
-CMD ["/home/admin/start_service.sh"]
+#  CMD ["/home/admin/start_service.sh"]
