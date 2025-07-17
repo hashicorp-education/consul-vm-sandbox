@@ -79,9 +79,9 @@ for node in "${NODES_ARRAY[@]}"; do
     remote_exec ${NODE_NAME} "chmod +x ~/start_service.sh" > /dev/null 2>&1
 
     if [ "${ENABLE_SERVICE_MESH}" == "true" ]; then
-      remote_exec ${NODE_NAME} "bash ~/start_service.sh local" > /dev/null 2>&1
+      remote_exec ${NODE_NAME} "bash sudo ~/start_service.sh local" > /dev/null 2>&1
     else
-      remote_exec ${NODE_NAME} "bash ~/start_service.sh start --consul" > /dev/null 2>&1
+      remote_exec ${NODE_NAME} "bash sudo ~/start_service.sh start --consul" > /dev/null 2>&1
     fi
     set +x 
   done
