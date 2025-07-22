@@ -31,7 +31,7 @@ echo '# ------------------------------------ #'
 
 SERVICE_MESH=false
 
-LOGFILE="/tmp/database.log"
+LOGFILE="/tmp/logs/database.log"
 
 export PGDATA="/var/lib/postgresql/data"
 export POSTGRES_DB="products"
@@ -78,7 +78,7 @@ case "$1" in
             SERVICE_MESH=true
             ;;
         "--consul")
-            echo "START CONSUL - Starts the service using Consul service name for upstream services (using LB functionality)."
+            echo "START CONSUL - Starts the service using Consul service name for upstream services using LB functionality."
             echo "NOT APPLICABLE FOR THIS SERVICE - No Upstreams to define."
             ;;
         "--consul-node")
@@ -119,7 +119,7 @@ esac
 ## -----------------------------------------------------------------------------
 echo "Start service instance."
 
-## Start PostgreSQL instance (by default on loacalhost)
+## Start PostgreSQL instance (by default on localhost)
 /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
 
 ## Wait for process to startup
@@ -135,9 +135,9 @@ else
     exit 1
 fi
 
-if [ "${SERVICE_MESH}" == true ]; then
-    echo "DB started on local insteface"
-else
+# if [ "${SERVICE_MESH}" == true ]; then
+#     echo "DB started on local interface"
+# else
     echo "Reloading config to listen on all available interfaces."
 
     ## Stop PostgreSQL process
@@ -152,7 +152,8 @@ else
     printf "\n listen_addresses = '*' \n" >> ${PGDATA}/postgresql.conf
 
     ## Start PostgreSQL process
+    # exec gosu postgres postgres -D "${PGDATA}" >> ${LOGFILE} 2>&1 &
     /usr/local/bin/docker-entrypoint.sh postgres >> ${LOGFILE} 2>&1 &
-fi
+# fi
 
 ## -----------------------------------------------------------------------------

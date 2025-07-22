@@ -137,7 +137,7 @@ popd > /dev/null 2>&1
 # +--------------------+ #
 
 IMAGE_NAME="hashicups-database"
-pushd ${IMAGE_NAME} > /dev/null 2>&1
+pushd ${BUILD_DIR}${IMAGE_NAME} > /dev/null 2>&1
 
 ts_log "Building \033[1m\033[33m${DOCKER_REPOSITORY}/${IMAGE_NAME}\033[0m"
 
@@ -165,7 +165,7 @@ popd > /dev/null 2>&1
 # +--------------------+ #
 
 IMAGE_NAME="hashicups-api"
-pushd ${IMAGE_NAME} > /dev/null 2>&1
+pushd ${BUILD_DIR}${IMAGE_NAME} > /dev/null 2>&1
 
 ts_log "Building \033[1m\033[33m${DOCKER_REPOSITORY}/${IMAGE_NAME}\033[0m"
 
@@ -196,7 +196,7 @@ popd > /dev/null 2>&1
 # +--------------------+ #
 
 IMAGE_NAME="hashicups-frontend"
-pushd ${IMAGE_NAME} > /dev/null 2>&1
+pushd ${BUILD_DIR}${IMAGE_NAME} > /dev/null 2>&1
 
 ts_log "Building \033[1m\033[33m${DOCKER_REPOSITORY}/${IMAGE_NAME}\033[0m"
 
@@ -225,7 +225,7 @@ popd > /dev/null 2>&1
 # +--------------------+ #
 
 IMAGE_NAME="hashicups-nginx"
-pushd ${IMAGE_NAME} > /dev/null 2>&1
+pushd ${BUILD_DIR}${IMAGE_NAME} > /dev/null 2>&1
 
 ts_log "Building \033[1m\033[33m${DOCKER_REPOSITORY}/${IMAGE_NAME}\033[0m"
 

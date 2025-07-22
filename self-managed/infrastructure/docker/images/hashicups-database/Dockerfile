@@ -6,8 +6,8 @@ ARG BASE_IMAGE
 # | DOCKER IMAGES | #
 # ----------------- #
 
-FROM postgres:latest as pgres
-# FROM hashicorpdemoapp/product-api-db:${APP_VERSION} as base
+FROM docker.mirror.hashicorp.services/library/postgres:16.4 as pgres
+# FROM public.ecr.aws/y0y8c5c8/hashicorp-demoapp/product-api-db:${APP_VERSION} as base
 FROM ${BASE_IMAGE} 
 
 # ----------------- #
@@ -17,12 +17,17 @@ FROM ${BASE_IMAGE}
 RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive \
-	apt-get --assume-yes install postgresql postgresql-client postgresql-contrib && \
+	apt-get --assume-yes install postgresql postgresql-client postgresql-contrib gosu && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /docker-entrypoint-initdb.d
 
-COPY --from=pgres /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+COPY --from=pgres /usr/local/bin/ /usr/local/bin/
+COPY --from=pgres /usr/lib/postgresql/16/bin/ /usr/local/bin/
+COPY --from=pgres /usr/lib/postgresql/16/lib/ /usr/local/lib/
+COPY --from=pgres /usr/lib/postgresql/ /usr/lib/postgresql/
+COPY --from=pgres /usr/share/postgresql/ /usr/share/postgresql/
+COPY --from=pgres /usr/share/doc/postgresql-common/ /usr/share/doc/postgresql-common/
 
 COPY products.sql /docker-entrypoint-initdb.d/
 COPY pg_hba.conf /home/admin
@@ -33,14 +38,13 @@ ENV PGDATA /var/lib/postgresql/data
 # ENV POSTGRES_HOST_AUTH_METHOD trust
 ENV POSTGRES_DB products
 ENV POSTGRES_USER postgres
-ENV POSTGRES_PASSWORD password
+ENV POSTGRES_PASSWORD hashicups_pwd
 # # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
 RUN mkdir -p "$PGDATA" && \
     chown -R 1000:1000 "$PGDATA" && \
     chmod 777 "$PGDATA" && \
     chown -R 1000:1000 /var/lib/postgresql && \
     chown -R 1000:1000 /etc/postgresql
-    
 
 # ----------------- #
 # | ENTRYPOINT    | #
@@ -58,9 +62,9 @@ STOPSIGNAL SIGINT
 
 EXPOSE 5432
 
-# The appliucation will be started manually ar runtime
+# The application will be started manually at runtime
 # CMD ["docker-entrypoint.sh", "postgres"]
 
-
+# CMD ["/home/admin/start_service.sh"]
 
 # CMD ["postgres", "--version"]
