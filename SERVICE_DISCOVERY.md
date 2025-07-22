@@ -31,17 +31,17 @@ consul catalog services -tags
 
 ## Change configuration for a service
 
-Using the configuration files it is possible to change the service definitions.
+You can use the configuration files to change the service definitions.
 
-As example you can change the tags for the `hashicups-frontend` service.
+For example, you can change the tags for the `hashicups-frontend` service.
 
-First login to the `hashicups-frontend-0` node.
+First, login to the `hashicups-frontend-0` node.
 
 ```
 ssh -i certs/id_rsa hashicups-frontend-0
 ```
 
-Then edit the `svc-hashicups-frontend.hcl` file in the `/etc/consul.d` directory.
+Then, edit the `svc-hashicups-frontend.hcl` file in the `/etc/consul.d` directory.
 
 ```
 vim /etc/consul.d/svc-hashicups-frontend.hcl 
@@ -72,7 +72,7 @@ service {
 }
 ```
 
-Then query the Consul registry to verify the tag changed.
+Finally, query the Consul registry to verify the tag changed.
 
 ```
 consul catalog services -tags
@@ -80,8 +80,6 @@ consul catalog services -tags
 
 ## Resources
 
-Using the configuration file you can change other settings of your services and
-add extra health checks.
+By updating and applying your configuration files, you can change other settings of your services and add extra health checks.
 
-For more detailed examples check our tutorials at 
-[Monitor your application health with distributed checks](https://developer.hashicorp.com/consul/tutorials/connect-services/monitor-applications-health-checks)
+For more detailed examples, check our tutorials at [Monitor your application health with distributed checks](https://developer.hashicorp.com/consul/tutorials/connect-services/monitor-applications-health-checks).
