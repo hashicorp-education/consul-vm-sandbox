@@ -72,11 +72,24 @@ resource "docker_container" "bastion_host" {
     destination = "/home/${var.vm_username}"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "cd /home/${var.vm_username}/ops && bash ./provision.sh operate ${var.scenario}"
-    ]
+  provisioner local-exec {
+    command = "ssh -o StrictHostKeyChecking=accept-new -i ./images/base/certs/id_rsa admin@127.0.0.1 -p 2222 \"cd /home/${var.vm_username}/ops && bash ./provision.sh operate ${var.scenario}\""
   }
+  
+  # provisioner "remote-exec" {
+
+    # connection {
+    #   type        = "ssh"
+    #   user        = "${var.vm_username}"
+    #   private_key = file("./images/base/certs/id_rsa")
+    #   host        = "127.0.0.1"
+    #   port        = 2222
+    # }
+
+    # inline = [
+    #   "cd /home/${var.vm_username}/ops && bash ./provision.sh operate ${var.scenario}"
+    # ]
+  # }
 
   # depends_on = [
   #   docker_container.consul_server,
